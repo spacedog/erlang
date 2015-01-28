@@ -8,7 +8,8 @@
          odds_and_evens2/1,
          my_time_func/1,
          my_tuple_to_list/1,
-         my_date_string/0
+         my_date_string/0,
+         count_characters/1
         ]).
 
 for(Max, Max, F) -> [F(Max)];
@@ -75,3 +76,10 @@ my_date_string() ->
   io:format("~B-~2..0B-~2..0B ~2..0B:~2..0B:~2..0B~n",[Year,Month,Day,Hour,Minute,Sec]).
 
 
+count_characters(Str) ->
+  count_characters(Str, #{}).
+
+count_characters([H|T],X) ->
+  count_characters(T, maps:put(H, maps:get(H,X,0) + 1, X));
+count_characters([], X) ->
+  X.
