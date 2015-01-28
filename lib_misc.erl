@@ -9,7 +9,9 @@
          my_time_func/1,
          my_tuple_to_list/1,
          my_date_string/0,
-         count_characters/1
+         count_characters/1,
+         map_search_pred/2,
+         map_search_pred1/2
         ]).
 
 for(Max, Max, F) -> [F(Max)];
@@ -83,3 +85,20 @@ count_characters([H|T],X) ->
   count_characters(T, maps:put(H, maps:get(H,X,0) + 1, X));
 count_characters([], X) ->
   X.
+
+map_search_pred(Map, Pred) ->
+  lists:nth(1,[
+              {Key, Value} || {Key, Value} <- maps:to_list(Map),
+                              Pred(Key,Value) =:= true
+             ]).
+
+map_search_pred1(Map, Pred) when is_map(Map) ->
+  map_search_pred1(maps:to_list(Map), Pred);
+map_search_pred1([], _) ->
+  {error,not_found};
+map_search_pred1([{Key,Value}|T], Pred) ->
+  case Pred(Key,Value) of
+    false -> map_search_pred1(T, Pred);
+    true  -> {ok,{Key,Value}}
+  end.
+
