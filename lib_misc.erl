@@ -11,7 +11,8 @@
          my_date_string/0,
          count_characters/1,
          map_search_pred/2,
-         map_search_pred1/2
+         map_search_pred1/2,
+         sqrt/1
         ]).
 
 for(Max, Max, F) -> [F(Max)];
@@ -101,4 +102,9 @@ map_search_pred1([{Key,Value}|T], Pred) ->
     false -> map_search_pred1(T, Pred);
     true  -> {ok,{Key,Value}}
   end.
+
+sqrt(X) when X < 0 ->
+  error({sqrtNegativeArg, X});
+sqrt(X) ->
+  math:sqrt(X).
 
