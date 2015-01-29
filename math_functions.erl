@@ -1,5 +1,11 @@
 -module(math_functions).
--export([even/1, odd/1, filter/2, split1/1,split2/1]).
+-export([even/1, 
+         odd/1,
+         filter/2,
+         split1/1,
+         split2/1,
+         factorial/1
+        ]).
 
 
 even(X) when (X rem 2) =:= 0 -> true;
@@ -29,3 +35,7 @@ split_acc([H|T], Even, Odd) ->
 split_acc([], Even, Odd) ->
   {lists:reverse(Even), lists:reverse(Odd)}.
 
+
+factorial(0) -> 1;
+factorial(N) ->
+  N * factorial(N-1).
