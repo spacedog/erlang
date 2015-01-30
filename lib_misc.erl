@@ -13,7 +13,8 @@
          count_characters/1,
          map_search_pred/2,
          map_search_pred1/2,
-         sqrt/1
+         sqrt/1,
+         convert/1
         ]).
 
 for(Max, Max, F) -> [F(Max)];
@@ -109,3 +110,15 @@ sqrt(X) when X < 0 ->
 sqrt(X) ->
   math:sqrt(X).
 
+
+convert(Day) ->
+  case Day of
+    monday    -> 1;
+    tuesday   -> 2;
+    wednesday -> 3;
+    thursday  -> 4;
+    friday    -> 5;
+    saturday  -> 6;
+    sunday    -> 7;
+    _         -> throw({error, unknown_day})
+  end.
