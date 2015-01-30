@@ -37,6 +37,6 @@ split_acc([], Even, Odd) ->
   {lists:reverse(Even), lists:reverse(Odd)}.
 
 
-factorial(0) -> 1;
-factorial(N) ->
-  N * factorial(N-1).
+factorial(N) when N > 0 ->
+  N * factorial(N-1);
+factorial(0) -> 1.
