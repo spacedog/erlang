@@ -1,4 +1,5 @@
 -module(math_functions).
+-author("abaranov@linux.com").
 -export([even/1, 
          odd/1,
          filter/2,

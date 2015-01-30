@@ -1,4 +1,5 @@
 -module(geometry).
+-author("abaranov@linux.com").
 -export([area/1]).
 
 area({rectangle, Width, Height}) -> Width * Height;

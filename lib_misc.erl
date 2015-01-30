@@ -1,4 +1,5 @@
 -module(lib_misc).
+-author("abaranov@linux.com").
 -export([for/3,
          qsort/1,
          pythag/1,
