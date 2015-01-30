@@ -14,7 +14,8 @@
          map_search_pred/2,
          map_search_pred1/2,
          sqrt/1,
-         convert/1
+         convert/1,
+         index/2
         ]).
 
 for(Max, Max, F) -> [F(Max)];
@@ -122,3 +123,6 @@ convert(Day) ->
     sunday    -> 7;
     _         -> throw({error, unknown_day})
   end.
+
+index(0,[X|_]) -> X;
+index(N,[_|Xs]) when N > 0 -> index(N-1, Xs).
