@@ -16,6 +16,8 @@
          sqrt/1,
          convert/1,
          index/2,
+         bump/1,
+         average/1,
          number/1
         ]).
 
@@ -131,3 +133,16 @@ index(N,[_|Xs]) when N > 0 -> index(N-1, Xs).
 number(Num) when is_integer(Num) -> integer;
 number(Num) when is_float(Num)   -> float;
 number(_)                        -> false.
+
+bump([]) -> [];
+bump([Head | Tail]) ->
+  [Head + 1 | bump(Tail)].
+
+average([])   -> 0;
+average(List) -> sum(List) / len(List).
+
+sum([]) -> 0;
+sum([Head|Tail]) -> Head + sum(Tail).
+
+len([]) -> 0;
+len([_|Tail]) -> 1 + len(Tail).
