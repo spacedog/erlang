@@ -18,7 +18,9 @@
          index/2,
          bump/1,
          average/1,
-         number/1
+         member/2,
+         number/1,
+         sum1/1
         ]).
 
 for(Max, Max, F) -> [F(Max)];
@@ -144,5 +146,14 @@ average(List) -> sum(List) / len(List).
 sum([]) -> 0;
 sum([Head|Tail]) -> Head + sum(Tail).
 
+sum1(List) -> sum_acc(List,0).
+sum_acc([], Sum) -> Sum;
+sum_acc([Head|Tail], Sum) -> sum_acc(Tail, Sum+Head).
+
 len([]) -> 0;
 len([_|Tail]) -> 1 + len(Tail).
+
+
+member(_, []) -> false;
+member(H, [H|_]) -> true;
+member(H, [_|T]) -> member(H,T).
