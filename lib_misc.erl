@@ -17,10 +17,12 @@
          convert/1,
          index/2,
          bump/1,
+         bump1/1,
          average/1,
          member/2,
          number/1,
-         sum1/1
+         sum1/1,
+         merge/2
         ]).
 
 for(Max, Max, F) -> [F(Max)];
@@ -140,6 +142,11 @@ bump([]) -> [];
 bump([Head | Tail]) ->
   [Head + 1 | bump(Tail)].
 
+bump1(L) -> bump_acc(L, []).
+
+bump_acc([], Result) -> Result;
+bump_acc([H|T], Result) -> bump_acc(T,[H+1|Result]).
+
 average([])   -> 0;
 average(List) -> sum(List) / len(List).
 
@@ -157,3 +164,17 @@ len([_|Tail]) -> 1 + len(Tail).
 member(_, []) -> false;
 member(H, [H|_]) -> true;
 member(H, [_|T]) -> member(H,T).
+
+
+merge(Xs,Ys) ->
+  lists:reverse(mergeL(Xs,Ys,[])).
+
+mergeL([X|Xs], Ys, Zs) ->
+  mergeR(Xs,Ys,[X|Zs]);
+mergeL([],[],Zs) ->
+  Zs.
+
+mergeR(Xs,[Y|Ys], Zs) ->
+  mergeL(Xs, Ys, [Y|Zs]);
+mergeR([],[],Zs) ->
+  Zs.
