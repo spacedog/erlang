@@ -15,7 +15,8 @@
          map_search_pred1/2,
          sqrt/1,
          convert/1,
-         index/2
+         index/2,
+         number/1
         ]).
 
 for(Max, Max, F) -> [F(Max)];
@@ -126,3 +127,7 @@ convert(Day) ->
 
 index(0,[X|_]) -> X;
 index(N,[_|Xs]) when N > 0 -> index(N-1, Xs).
+
+number(Num) when is_integer(Num) -> integer;
+number(Num) when is_float(Num)   -> float;
+number(_)                        -> false.
