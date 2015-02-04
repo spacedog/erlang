@@ -5,7 +5,8 @@
          filter/2,
          split1/1,
          split2/1,
-         factorial/1
+         factorial/1,
+         add/2
         ]).
 
 
@@ -40,3 +41,11 @@ split_acc([], Even, Odd) ->
 factorial(N) when N > 0 ->
   N * factorial(N-1);
 factorial(0) -> 1.
+
+add(X,Y) ->
+  test_int(X),
+  test_int(Y),
+  X + Y.
+
+test_int(Int) when is_integer(Int) -> true;
+test_int(Int)                      -> throw({error, {non_integer, Int}}).
