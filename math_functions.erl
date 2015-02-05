@@ -7,7 +7,8 @@
          split2/1,
          factorial/1,
          add/2,
-         sum1/1
+         sum1/1,
+         sum/2
         ]).
 
 
@@ -53,3 +54,9 @@ test_int(Int)                      -> throw({error, {non_integer, Int}}).
 
 sum1(0) -> 0;
 sum1(N) -> N + sum1(N-1).
+
+sum(N,M) when N < M ->
+  N + sum(N+1, M);
+sum(N, N) -> N;
+sum(N,M) when N > M ->
+  exit({error, wrong_range}).
