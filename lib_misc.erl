@@ -22,7 +22,9 @@
          member/2,
          number/1,
          sum1/1,
-         merge/2
+         merge/2,
+         print_number/1,
+         print_number_even/1
         ]).
 
 for(Max, Max, F) -> [F(Max)];
@@ -178,3 +180,23 @@ mergeR(Xs,[Y|Ys], Zs) ->
   mergeL(Xs, Ys, [Y|Zs]);
 mergeR([],[],Zs) ->
   Zs.
+
+print_number(N) when N > 0 ->
+  print_number(1,N).
+
+print_number(X,N) when X < N ->
+  io:format("Number:~p~n", [X]),
+  print_number(X+1, N);
+print_number(N,N) ->
+  io:format("Number:~p~n", [N]).
+
+print_number_even(N) when N > 0 ->
+  print_number_even(1,N).
+
+print_number_even(X,N) when X =< N, (X rem 2) =:= 0 ->
+  io:format("Number:~p~n", [X]),
+  print_number_even(X+1,N);
+print_number_even(X,N) when X =< N ->
+  print_number_even(X+1,N);
+print_number_even(_,_) -> 0.
+
