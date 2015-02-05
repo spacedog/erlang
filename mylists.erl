@@ -2,7 +2,8 @@
 -export([
          sum/1,
          map/2,
-         create/1
+         create/1,
+         reverse_create/1
         ]).
 
 sum([H|T]) -> H + sum(T);
@@ -20,3 +21,7 @@ create(X,N) when X =< N ->
   [X|create(X+1,N)];
 create(N,N) -> N;
 create(_,_) -> [].
+
+reverse_create(N) when N > 0 ->
+  [N|reverse_create(N-1)];
+reverse_create(_) -> [].
