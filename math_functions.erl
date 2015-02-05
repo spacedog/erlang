@@ -6,7 +6,8 @@
          split1/1,
          split2/1,
          factorial/1,
-         add/2
+         add/2,
+         sum1/1
         ]).
 
 
@@ -49,3 +50,6 @@ add(X,Y) ->
 
 test_int(Int) when is_integer(Int) -> true;
 test_int(Int)                      -> throw({error, {non_integer, Int}}).
+
+sum1(0) -> 0;
+sum1(N) -> N + sum1(N-1).
