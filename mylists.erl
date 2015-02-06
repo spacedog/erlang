@@ -6,7 +6,8 @@
          reverse_create/1,
          filter/2,
          reverse/1,
-         concatenate/1
+         concatenate/1,
+         flatten/1
         ]).
 
 sum([H|T]) -> H + sum(T);
@@ -49,3 +50,12 @@ concatenate([[]|Tail],Acc) ->
 concatenate([], Acc) ->
   reverse(Acc).
 
+flatten(List) ->
+  reverse(flatten(List,[])).
+
+flatten([         ],  Acc) ->
+  Acc;
+flatten([Head|Tail],  Acc) when is_list(Head) ->
+  flatten(Tail, flatten(Head, Acc));
+flatten([Head|Tail], Acc) ->
+  flatten(Tail, [Head|Acc]).
