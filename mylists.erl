@@ -5,7 +5,8 @@
          create/1,
          reverse_create/1,
          filter/2,
-         reverse/1
+         reverse/1,
+         concatenate/1
         ]).
 
 sum([H|T]) -> H + sum(T);
@@ -37,3 +38,14 @@ reverse(List) ->
 reverse([Head|Tail], Acc) ->
   reverse(Tail,[Head|Acc]);
 reverse([], Acc) -> Acc.
+
+concatenate(List) ->
+  concatenate(List,[]).
+
+concatenate([[H|T]|Tail],Acc) ->
+  concatenate([T|Tail], [H|Acc]);
+concatenate([[]|Tail],Acc) ->
+  concatenate(Tail,Acc);
+concatenate([], Acc) ->
+  reverse(Acc).
+
