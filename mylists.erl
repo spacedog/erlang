@@ -3,7 +3,8 @@
          sum/1,
          map/2,
          create/1,
-         reverse_create/1
+         reverse_create/1,
+         filter/2
         ]).
 
 sum([H|T]) -> H + sum(T);
@@ -25,3 +26,6 @@ create(_,_) -> [].
 reverse_create(N) when N > 0 ->
   [N|reverse_create(N-1)];
 reverse_create(_) -> [].
+
+filter(List, Int) ->
+  [X || X <- List, X =< Int].
