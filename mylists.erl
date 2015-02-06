@@ -4,7 +4,8 @@
          map/2,
          create/1,
          reverse_create/1,
-         filter/2
+         filter/2,
+         reverse/1
         ]).
 
 sum([H|T]) -> H + sum(T);
@@ -29,3 +30,10 @@ reverse_create(_) -> [].
 
 filter(List, Int) ->
   [X || X <- List, X =< Int].
+
+reverse(List) ->
+  reverse(List,[]).
+
+reverse([Head|Tail], Acc) ->
+  reverse(Tail,[Head|Acc]);
+reverse([], Acc) -> Acc.
