@@ -2,7 +2,8 @@
 - export([
           evaluator/1,
           pretty_print/1,
-          compile/1
+          compile/1,
+          simulate/1
          ]).
 
 p_lb() -> io:format("(").
@@ -38,3 +39,14 @@ compile({Oper, Exp1, Exp2}, Acc) -> lists:concat([compile(Exp1),
 compile({unary, Exp},       Acc) -> lists:concat([compile(Exp),
                                                   [unary | Acc]
                                                  ]).
+
+
+simulate(Stack) -> simulate(Stack, []).
+
+simulate([],                  Result)          -> hd(Result);
+simulate([plus    | Stack],   [X, Y | Result]) -> simulate(Stack, [X + Y | Result]);
+simulate([minus   | Stack],   [X, Y | Result]) -> simulate(Stack, [Y - X | Result]);
+simulate([multiple| Stack],   [X, Y | Result]) -> simulate(Stack, [X * Y | Result]);
+simulate([devide  | Stack],   [X, Y | Result]) -> simulate(Stack, [X / Y | Result]);
+simulate([unary   | Stack],   [X    | Result]) -> simulate(Stack, [ -X   | Result]);
+simulate([N       | Stack],   Result)          -> simulate(Stack, [N     | Result]).
